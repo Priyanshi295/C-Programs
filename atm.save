@@ -1,0 +1,171 @@
+#include <stdio.h>
+
+float balance = 50000;
+int pin = 1234;
+
+void WITHDRAW()
+{
+    float i;
+
+    printf("Enter the amount to withdraw: ");
+    scanf("%f", &i);
+
+    if(i > 0 && i <= balance)
+    {
+        balance -= i;
+        printf("Your current balance is %.2f\n", balance);
+    }
+    else if(i > balance)
+    {
+        printf("Insufficient balance\n");
+    }
+    else
+    {
+        printf("Invalid amount\n");
+    }
+}
+
+void DEPOSIT()
+{
+    float i;
+
+    printf("Enter the amount to deposit: ");
+    scanf("%f", &i);
+
+    if(i > 0)
+    {
+        balance += i;
+        printf("Your current balance is %.2f\n", balance);
+    }
+    else
+    {
+        printf("Invalid amount\n");
+    }
+}
+
+void UPDATEPIN()
+{
+    int i, j;
+
+    printf("ENTER YOUR OLD PIN: ");
+    scanf("%d", &i);
+
+    if(i == pin)
+    {
+        printf("ENTER YOUR NEW PIN: ");
+        scanf("%d", &j);
+
+        pin = j;
+        printf("PIN updated successfully\n");
+    }
+    else
+    {
+        printf("Incorrect PIN\n");
+    }
+}
+
+int main()
+{
+    int choice;
+    int pin1, attempts = 0;
+
+
+    
+
+    printf("\n=================================\n");
+    printf("     WELCOME TO K.A.P BANK ATM\n");
+    printf("=================================\n\n");
+
+    
+
+    
+
+    while(attempts < 3)
+    {
+        printf("Enter your PIN: ");
+        scanf("%d", &pin1);
+
+        if(pin == pin1)
+        {
+            printf("You are logged in\n");
+            break;
+        }
+        else
+        {
+            attempts++;
+            printf("Incorrect PIN. Try again. Attempts remaining: %d\n",
+                   3 - attempts);
+        }
+    }
+
+    if(attempts == 3)
+    {
+        printf("Your Account Has Been Locked\n");
+        printf("A message guiding further steps has been sent to your registered mobile no.\n");
+    }
+    else
+    {
+        do
+        {
+            printf("\n");
+            printf("+==============================================================+\n");
+            printf("|                                                              |\n");
+            printf("|                        K.A.P BANK                             |\n");
+            printf("|                   YOUR TRUST, OUR PROMISE                     |\n");
+            printf("|                                                              |\n");
+            printf("+==============================================================+\n");
+            printf("|                         ATM SERVICES                         |\n");
+            printf("+--------------------------------------------------------------+\n");
+            printf("|                                                              |\n");
+            printf("|                 WELCOME TO K.A.P BANK ATM                    |\n");
+            printf("|                                                              |\n");
+            printf("|     +------------------------+  +------------------------+    |\n");
+            printf("|     | [1] WITHDRAW MONEY     |  | [2] DEPOSIT MONEY     |    |\n");
+            printf("|     +------------------------+  +------------------------+    |\n");
+            printf("|                                                              |\n");
+            printf("|     +------------------------+  +------------------------+    |\n");
+            printf("|     | [3] BALANCE ENQUIRY    |  | [4] CHANGE PIN        |    |\n");
+            printf("|     +------------------------+  +------------------------+    |\n");
+            printf("|                                                              |\n");
+            printf("|                 +------------------------+                   |\n");
+            printf("|                 | [5] EXIT               |                   |\n");
+            printf("|                 +------------------------+                   |\n");
+            printf("|                                                              |\n");
+            printf("+--------------------------------------------------------------+\n");
+            printf("|                     ENTER YOUR CHOICE                        |\n");
+            printf("+==============================================================+\n");
+            printf("                              ");
+
+            scanf("%d", &choice);
+
+            switch(choice)
+            {
+                case 1:
+                    WITHDRAW();
+                    break;
+
+                case 2:
+                    DEPOSIT();
+                    break;
+
+                case 3:
+                    printf("Your Current Balance is %.2f\n", balance);
+                    break;
+
+                case 4:
+                    UPDATEPIN();
+                    break;
+
+                case 5:
+                    printf("Thank You For Banking With Us\n");
+                    break;
+
+                default:
+                    printf("Invalid choice. Try again\n");
+            }
+
+        } while(choice != 5);
+    }
+
+    return 0;
+}
